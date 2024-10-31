@@ -68,6 +68,7 @@ class CreateCheckoutCreditCardPaymentRequest implements JsonSerializable
         $json['installments']         = $this->installments;
         $json['authentication']       = $this->authentication;
         $json['capture']              = $this->capture;
+
         return $json;
     }
 }
