@@ -114,6 +114,18 @@ class CreateCreditCardPaymentRequest implements JsonSerializable
     public $recurrencyCycle;
 
     /**
+     * Define the type of one-off transaction initiated?
+     * @var String|null $initiated_type public property
+     */
+    public $initiated_type;
+
+    /**
+     * Identifies the recurrence model
+     * @var String $recurrence_model public property
+     */
+    public $recurrence_model;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param integer                             $installments         Initialization value for $this->installments
      * @param string                              $statementDescriptor  Initialization value for $this-
@@ -136,6 +148,8 @@ class CreateCreditCardPaymentRequest implements JsonSerializable
      * @param string                              $operationType        Initialization value for $this->operationType
      * @param string                              $recurrencyCycle      Initialization value for $this-
      *                                                                    >recurrencyCycle
+     * @param String                             $initiated_type      Initialization value for $this->initiated_type
+     * @param String                             $recurrence_model      Initialization value for $this->recurrence_model
      */
     public function __construct()
     {
@@ -156,6 +170,8 @@ class CreateCreditCardPaymentRequest implements JsonSerializable
                 $this->autoRecovery         = func_get_arg(12);
                 $this->operationType        = func_get_arg(13);
                 $this->recurrencyCycle      = func_get_arg(14);
+                $this->initiated_type      = func_get_arg(15);
+                $this->recurrence_model    = func_get_arg(16);
                 break;
 
             default:
@@ -187,6 +203,10 @@ class CreateCreditCardPaymentRequest implements JsonSerializable
         $json['auto_recovery']          = $this->autoRecovery;
         $json['operation_type']         = $this->operationType;
         $json['recurrency_cycle']       = $this->recurrencyCycle;
+        if($this->initiated_type) {
+            $json['initiated_type'] = $this->initiated_type;
+        }
+        $json['recurrence_model']     = $this->recurrence_model;
 
         return $json;
     }
