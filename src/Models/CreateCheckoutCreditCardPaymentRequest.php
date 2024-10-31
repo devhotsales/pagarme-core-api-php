@@ -40,26 +40,12 @@ class CreateCheckoutCreditCardPaymentRequest implements JsonSerializable
     public $capture;
 
     /**
-     * Define the type of one-off transaction initiated?
-     * @var String|null $initiated_type public property
-     */
-    public $initiated_type;
-
-    /**
-     * Identifies the recurrence model
-     * @var String $recurrence_model public property
-     */
-    public $recurrence_model;
-
-    /**
      * Constructor to set initial or default values of member properties
      * @param string                             $statementDescriptor Initialization value for $this-
      *                                                                  >statementDescriptor
      * @param array                              $installments        Initialization value for $this->installments
      * @param CreatePaymentAuthenticationRequest $authentication      Initialization value for $this->authentication
      * @param bool                               $capture             Initialization value for $this->capture
-     * @param String                             $initiated_type      Initialization value for $this->initiated_type
-     * @param String                             $recurrence_model      Initialization value for $this->recurrence_model
      */
     public function __construct()
     {
@@ -68,8 +54,6 @@ class CreateCheckoutCreditCardPaymentRequest implements JsonSerializable
             $this->installments        = func_get_arg(1);
             $this->authentication      = func_get_arg(2);
             $this->capture             = func_get_arg(3);
-            $this->initiated_type      = func_get_arg(4);
-            $this->recurrence_model    = func_get_arg(5);
         }
     }
 
@@ -84,10 +68,6 @@ class CreateCheckoutCreditCardPaymentRequest implements JsonSerializable
         $json['installments']         = $this->installments;
         $json['authentication']       = $this->authentication;
         $json['capture']              = $this->capture;
-        if($this->initiated_type) {
-            $json['initiated_type'] = $this->initiated_type;
-        }
-        $json['recurrence_model']     = $this->recurrence_model;
         return $json;
     }
 }
